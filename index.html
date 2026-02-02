@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="image-belt-container">
+        <div class="image-belt"></div>
+    </div>
+    <div class="container">
+        <h1>Will you be my Valentine, Grace?</h1>
+        <div class="buttons">
+            <div class="button-wrapper"><button id="yes-btn">Yes</button></div>
+            <div class="button-wrapper"><button id="no-btn">No</button></div>
+        </div>
+        <div id="message" class="hidden">
+            <h2>I love you! See you on Feb 14th.</h2>
+        </div>
+    </div>
+
+    <audio id="celebration-sound" src="https://www.soundjay.com/buttons/sounds/button-7.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const images = [
+                'pics/01896CD7-3B9E-4C62-88B5-FE5CE1104460_4_5005_c.jpeg',
+                'pics/0976A872-CE34-46D9-8ED1-6780241D5DE8_4_5005_c.jpeg',
+                'pics/0A4A4AB4-6B31-4C75-B142-93165F4664EA_1_105_c.jpeg',
+                'pics/0B4D9604-B783-4F33-BBD6-7EADAEA8F118_1_105_c.jpeg',
+                'pics/0D83A4E0-5079-424E-B1F7-B0CDDFF05806_1_105_c.jpeg',
+                'pics/10A80FDA-6995-441D-80B6-2CC87CE8A899_4_5005_c.jpeg',
+                'pics/16462B4A-A289-4497-8A0A-BC6ABB5ACEC5_4_5005_c.jpeg',
+                'pics/177890D7-8350-4AA6-B882-F9DBB7CFFBFC_1_102_o.jpeg',
+                'pics/17A9CD4B-CBD2-4087-ADCC-555311E40ED9_4_5005_c.jpeg',
+                'pics/1B48C089-5B61-4594-8669-309A39F271A4_4_5005_c.jpeg',
+                'pics/26565326-11FF-4D50-AD73-9B0470B04AC6_1_105_c.jpeg',
+                'pics/2B00F665-8B93-4B16-9EA8-565727A5EE8C_1_105_c.jpeg',
+                'pics/2FA75A1D-239F-4B02-9AAE-FDCBFA132FE5.jpeg',
+                'pics/32CD6B9C-0793-45F2-AA95-93D17DA407C7.jpeg',
+                'pics/4123C646-AC42-4D12-B799-1C488A98C40F_4_5005_c.jpeg',
+                'pics/42374C48-12B8-4BCE-A0CE-C64760CA6266_4_5005_c.jpeg',
+                'pics/449858EF-86D7-491C-9C92-5F069B335B4E_4_5005_c.jpeg',
+                'pics/45C44454-7B11-490A-8B07-C751EE9666CD_1_105_c.jpeg',
+                'pics/4C1117A4-799E-4F31-812A-7806D872B8EC_1_105_c.jpeg',
+                'pics/58F91AFD-6FD9-4A06-9B73-DB78F885C6B5_1_105_c.jpeg',
+                'pics/5B2E9B5A-38AF-44ED-9FFC-9F5532C4CEEE_1_105_c.jpeg',
+                'pics/5C0628AA-E2F9-4E5C-B812-DAA1A11265B2_1_105_c.jpeg',
+                'pics/699AB999-09B6-4241-B0AC-2EEA3F03B6BF.jpeg',
+                'pics/70F10A78-E871-46CA-9B41-BE15ED020D89_1_105_c.jpeg',
+                'pics/74B432AD-EC43-4FEA-9A51-7D02D7614BE7_1_105_c.jpeg',
+                'pics/75B9D20B-26D0-48A3-B340-A22111155F25_1_105_c.jpeg',
+                'pics/7C3A8507-2E68-4D56-934E-28CFAA07FDB5_1_105_c.jpeg',
+                'pics/8027B508-1A58-4760-94B6-5ED1757929CB_1_105_c.jpeg',
+                'pics/8806744D-D530-4545-890D-F6D594C4A9DA_1_102_o.jpeg',
+                'pics/8B99B4CC-B1E1-432A-B1BD-38916737D655_1_105_c.jpeg',
+                'pics/8E96DCE5-7E81-44A3-A606-A48673799F02_4_5005_c.jpeg',
+                'pics/A08E629D-99A0-4167-869B-FE8A2231BD13_4_5005_c.jpeg',
+                'pics/A1A888F2-6618-4912-AA39-9A264160B1A1_1_105_c.jpeg',
+                'pics/A8115915-E3EE-4B62-9C93-8868E6157E0F_4_5005_c.jpeg',
+                'pics/B1EC32DD-E602-41C4-B302-1114189C97B6_1_105_c.jpeg',
+                'pics/BB768F34-5EAA-4427-B6F8-7C9B0EA8C9D1_1_105_c.jpeg',
+                'pics/CF18229C-D788-4A25-B82F-D0BBA3F998C7_1_105_c.jpeg',
+                'pics/D218967A-0D52-4AFC-97A1-479BB0D0DFF5_1_105_c.jpeg',
+                'pics/D59CB1AC-1166-4320-8095-744A05A936A1.jpeg',
+                'pics/D88F1DE0-B20E-43F5-A7B0-68DC563283C9_4_5005_c.jpeg',
+                'pics/DD2FB387-C755-43EE-A0FA-6005FD125C96_4_5005_c.jpeg',
+                'pics/DF6597E0-9D95-487B-AF4E-EDF23AE9DDDE_1_105_c.jpeg',
+                'pics/E5DA320C-5FF8-4148-AFDB-4441632CDD46_1_105_c.jpeg',
+                'pics/E7B7A1B7-08ED-4073-A8F8-053E2FEF4A78_1_105_c.jpeg',
+                'pics/EEDA72F2-BD25-4CF6-9764-A6E90C031D08.jpeg',
+                'pics/EF01C6E7-87E5-42F2-BA24-509CBD1AFDDB_1_105_c.jpeg',
+                'pics/F035C4EF-A939-44C6-BF34-59B608D76938_1_105_c.jpeg',
+                'pics/F53A0ED1-7C10-4614-A751-6A9481A962D2_1_105_c.jpeg',
+                'pics/F88FAAE9-65E0-48E6-BC43-C0CADBB64C95_1_105_c.jpeg',
+                'pics/FB9E43C2-B53F-4899-BE7A-582EBEEC0AA3_1_105_c.jpeg'
+            ];
+            const imageBelt = document.querySelector('.image-belt');
+
+            // Shuffle images for a random order
+            for (let i = images.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [images[i], images[j]] = [images[j], images[i]];
+            }
+
+            // Duplicate images for a seamless loop
+            const allImages = [...images, ...images];
+
+            allImages.forEach(src => {
+                const img = document.createElement('img');
+                img.src = src;
+                imageBelt.appendChild(img);
+            });
+        });
+    </script>
+</body>
+</html>
