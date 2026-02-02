@@ -22,7 +22,7 @@ const noPhrases = ["No", "Try Again", "Please?", "Be Nice", "Pretty Please?", "I
   "Not quite",
   "Please reconsider",
   "My heart 💔",
-  "Last chance!"];
+];
 let noClickCount = 0;
 
 yesBtn.addEventListener('click', () => {
@@ -32,13 +32,37 @@ yesBtn.addEventListener('click', () => {
     }, 300); // Short delay for the sound to play
 });
 
-noBtn.addEventListener('mouseover', () => {
+document.addEventListener('DOMContentLoaded', () => {
+    const flowerContainer = document.getElementById('flower-container');
+    const flowers = ['🌸', '🌺', '🌹', '🌷', '💐'];
 
+    function createFlower() {
+        const flower = document.createElement('div');
+        flower.classList.add('flower');
+        flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
+        flower.style.left = `${Math.random() * 100}vw`;
+        flower.style.animationDuration = `${(Math.random() * 5) + 5}s`;
+        flower.style.fontSize = `${(Math.random() * 1) + 1}rem`;
+        flower.style.animationDelay = `${Math.random() * 5}s`;
+        flowerContainer.appendChild(flower);
+
+        flower.addEventListener('animationend', () => {
+            flower.remove();
+        });
+    }
+
+    for (let i = 0; i < 50; i++) {
+        createFlower();
+    }
+    setInterval(createFlower, 500);
+});
+noBtn.addEventListener('mouseover', () => {
     noClickCount++;
     const newYesBtnSize = 1 + noClickCount * 0.2;
     yesBtn.style.transform = `scale(${newYesBtnSize})`;
 
-    const phraseIndex = Math.min(noClickCount, noPhrases.length - 1);
+    // Loop through phrases infinitely
+    const phraseIndex = noClickCount % noPhrases.length;
     noBtn.textContent = noPhrases[phraseIndex];
 
     noBtn.style.position = 'absolute';
@@ -60,5 +84,4 @@ noBtn.addEventListener('mouseover', () => {
 
     noBtn.style.left = `${randomX}px`;
     noBtn.style.top = `${randomY}px`;
-
 });

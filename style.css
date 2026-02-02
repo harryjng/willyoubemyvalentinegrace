@@ -41,7 +41,7 @@ body {
     height: 300px; /* Adjust height as needed */
     margin: 0 10px;
     border-radius: 10px;
-    opacity: 0.3;
+    opacity: 1;
 }
 
 .container {
@@ -120,4 +120,27 @@ button {
 
 .hidden {
     display: none;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+.flower {
+    position: fixed;
+    top: -10vh;
+    font-size: 1.5rem;
+    color: #ff8fab;
+    animation-name: fall;
+    animation-timing-function: linear;
+    opacity: 0;
+    text-shadow: 0 0 10px rgba(255, 136, 171, 0.5);
+    z-index: 10;
 }

@@ -51,7 +51,7 @@ body {
     height: 300px; /* Adjust height as needed */
     margin: 0 10px;
     border-radius: 10px;
-    opacity: 0.3;
+    opacity: 1;
 }
 
 .container {
@@ -149,4 +149,26 @@ h1 {
 
 .time-unit span.animate {
     animation: number-change 0.5s ease-in-out;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
+
+.heart {
+    position: fixed;
+    bottom: -1em;
+    font-size: 2rem; /* Adjust size */
+    color: #ff8fab; /* Soft Pink, matching theme */
+    animation-name: float;
+    animation-timing-function: linear;
+    opacity: 0;
+    text-shadow: 0 0 10px rgba(255, 136, 171, 0.5);
 }
