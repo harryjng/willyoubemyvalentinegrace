@@ -3,50 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dear Grace, My Love</title>
+    <title>A Message for You</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="greeting_style.css">
 </head>
 <body>
-    <div id="flower-container"></div>
-    <div class="image-belt-container">
-        <div class="image-belt"></div>
+    <div id="sparkle-container"></div>
+    <div id="hearts-container"></div>
+    <div class="overlay" id="overlay">
+        <div class="play-icon">▶</div>
+        <div>Click to Begin</div>
     </div>
     <div class="container">
-        <h1>Will you be my Valentine, Grace?</h1>
-        <div class="buttons">
-            <div class="button-wrapper"><button id="yes-btn">Yes</button></div>
-            <div class="button-wrapper"><button id="no-btn">No</button></div>
-        </div>
-        <div id="message" class="hidden">
-            <h2>I love you! See you on Feb 11th.</h2>
-        </div>
+        <video autoplay playsinline id="background-video">
+            <source src="video/greeting.mov" type="video/mp4">
+        </video>
+        <button id="continue-btn">Continue</button>
     </div>
-
-    <audio id="celebration-sound" src="https://www.soundjay.com/buttons/sounds/button-7.mp3" preload="auto"></audio>
-
-    <script src="script.js"></script>
-    <script src="pics-images.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const images = imageFileNames.map(fileName => `pics/${fileName}`);
-            const imageBelt = document.querySelector('.image-belt');
-
-            // Shuffle images for a random order
-            for (let i = images.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [images[i], images[j]] = [images[j], images[i]];
-            }
-
-            // Duplicate images for a seamless loop
-            const allImages = [...images, ...images];
-
-            allImages.forEach(src => {
-                const img = document.createElement('img');
-                img.src = src;
-                imageBelt.appendChild(img);
-            });
-        });
-    </script>
+    <script src="greeting_script.js"></script>
 </body>
 </html>
