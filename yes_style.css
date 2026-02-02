@@ -181,6 +181,7 @@ h1 {
 
     .time-unit {
         padding: 10px 15px;
+        min-width: 25px;
     }
 
     .journey-container {
