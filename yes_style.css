@@ -162,6 +162,41 @@ h1 {
     }
 }
 
+@media (max-width: 768px) {
+    .container {
+        padding: 30px 20px;
+        width: 90%;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .time-unit span {
+        font-size: 2rem;
+    }
+
+    .time-unit {
+        padding: 10px 15px;
+    }
+
+    .journey-container {
+        flex-direction: column;
+        margin: 30px 0;
+    }
+
+    .track {
+        width: 80%;
+        margin: 15px 0;
+    }
+
+    .closing-line {
+        font-size: 1.2rem;
+    }
+}
+
 .heart {
     position: fixed;
     bottom: -1em;
